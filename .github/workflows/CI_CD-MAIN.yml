@@ -7,3 +7,5 @@ on:
 jobs:
   Reuse:
     uses: nareshgdevops/roboshop-github-actions/.github/workflows/CI-reusable.yml@main
+    with:
+      appType: maven
