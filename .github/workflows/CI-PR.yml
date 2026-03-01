@@ -1,10 +1,8 @@
 name: CI - PR
 on:
-  pull_request:
-    branches:
-      - 'ROBO-**'
+  pull_request
 jobs:
-  Reuse:
+  Build:
     uses: nareshgdevops/roboshop-github-actions/.github/workflows/CI-PR.yml@main
     with:
       appType: maven
