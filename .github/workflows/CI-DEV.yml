@@ -8,3 +8,6 @@ jobs:
     uses: nareshgdevops/roboshop-github-actions/.github/workflows/CI-DEV.yml@main
     with:
       appType: maven
+      appName: shipping
+    secrets:
+      VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
