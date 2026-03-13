@@ -12,18 +12,17 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: http://vault-int.rdevopsb84.online:8200/
+          url: http://vault-int.nareshdevops1218.online:8200/
           token: ${{ secrets.vault_token }}
           secrets: |
-            roboshop-infra/data/azure-sp ARM_CLIENT_ID | ARM_CLIENT_ID ;
-            roboshop-infra/data/azure-sp ARM_CLIENT_SECRET | ARM_CLIENT_SECRET ;
-            roboshop-infra/data/azure-sp ARM_TENANT_ID | ARM_TENANT_ID ;
-            roboshop-infra/data/azure-sp ARM_SUBSCRIPTION_ID | ARM_SUBSCRIPTION_ID ;
-            roboshop-infra/data/sonarqube token | SONAR_TOKEN ;
+            roboshop-infra/data/azure-service-priniciple AZURE_SUBSCRIPTION_ID | AZURE_SUBSCRIPTION_ID ;
+            roboshop-infra/data/azure-service-priniciple AZURE_CLIENT_ID | AZURE_CLIENT_ID ;
+            roboshop-infra/data/azure-service-priniciple AZURE_SECRET | AZURE_SECRET ;
+            roboshop-infra/data/azure-service-priniciple AZURE_TENANT | AZURE_TENANT ;
 
       - name: Docker Build
         run: |
-          az login --service-principal --username "${ARM_CLIENT_ID}" --password "${ARM_CLIENT_SECRET}" --tenant "${ARM_TENANT_ID}"
-          az acr login --name roboshopb84
+          az login --service-principal --username $AZURE_CLIENT_ID --password $AZURE_SECRET --tenant $AZURE_TENANT
+          az acr login --name nareshgdevops
           docker build -t nareshgdevops.azurecr.io/roboshop-shipping-db-job:latest -f Dockerfile-dbjob .
           docker push nareshgdevops.azurecr.io/roboshop-shipping-db-job:latest
