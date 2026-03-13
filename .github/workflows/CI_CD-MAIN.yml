@@ -1,6 +1,6 @@
 name: CI/CD - MAIN
 on:
-  workflow_dispatch:
+  workflow_dispatch
 jobs:
   Build:
     uses: nareshgdevops/roboshop-github-actions/.github/workflows/CI-main.yml@main
