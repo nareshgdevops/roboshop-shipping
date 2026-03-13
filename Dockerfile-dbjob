@@ -4,4 +4,3 @@ RUN         mkdir /app
 WORKDIR     /app
 COPY        db/ /app/
 ENTRYPOINT  ["bash", "run.sh"]
-#ENTRYPOINT  ["tail", "-f","/dev/null"]
