@@ -1,5 +1,5 @@
 FROM            amazoncorretto:17
-RUN             yum install shadow-utils
+RUN             yum install shadow-utils \
                 && wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm \
                 && rpm -Uvh mysql80-community-release-el7-3.noarch.rpm \
                 && yum install -y mysql-community-client \
